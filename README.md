@@ -17,43 +17,47 @@ With this cookbook you can
 
 ### ['user_management']['use_databag']
 
-Define whether use data_bag for managing user accounts or not.  
-**Type:** Boolean
+Define whether use data_bag for managing user accounts or not.    
+**Type:** Boolean  
 **Default value:** false
 
 ### ['user_management']['databag_name']
 
-Define data\_bag name if you use data\_bag.
-**Type:** String
+Define data\_bag name if you use data\_bag.  
+**Type:** String  
 **Default value:** Nil
 
 
 ### ['user_management']['home_dir']
 
-Define home root directory.
-**Type:** String
+Define home root directory.  
+**Type:** String  
 **Default value:** '/home'
 
 ### ['user_management']['default_shell']
 
-Default shell script.
-**Type:** String
+Default shell script.  
+**Type:** String  
 **Default value:** '/bin/bash'
 
 
 ### ['user_management']['sudoer_group']
 
-Set sudoer group.
-**Type:** Array
+Set sudoer group.  
+**Type:** Array  
 **Default value:** Nil
 
 Array element should be hash and having following set.
 
-**:name** Name fo the group
-**:sudo_pwdless** Set this group to sudo passwordless or not
-**:command** List of sudo command. 
+|Key|Value|
+|---|-----|
+|**:name**| Name fo the group  |
+|**:sudo_pwdless**| Set this group to sudo passwordless or not  |
+|**:command**| List of sudo command. |
 
-Example bellow is set admin, wheel and sysadmin groups to sudoers and
+**Example**
+
+bellow is set admin, wheel and sysadmin groups to sudoers and
 set `sysadmin` to passwordless.
 
 ```
@@ -68,28 +72,30 @@ set `sysadmin` to passwordless.
 
 If you not use data_bag, list your users in here.
 
-List of user accounts.
-**Type:** Array
+List of user accounts.  
+**Type:** Array  
 **Default value:** Nil
 
 Array element should be hash and having following set.
 
-**comment** It's a comment...
-**create_home** If you want to create users home directory or not
-**action** `creat` otr `remove`
-**username** Name of user
-**shell** Default shell, if empty `['user_management']['default_shell']` will apply
-**password** Password of user, it should be hashed.
-**uid** User ID if you want to set 
-**gid** Group of user.
-**sudoer** If you want to set this user to sudoer, set `true`
-**command** List of sudo command. 
-**sudo_pwdless** Set this user to sudo passwordless or not
-**delete_home_when_remove** If you want to delete user directory when remove this user, set `true`
-**ssh_keys** Paste sshe key, if this user have one.
+|key|Value|
+|---|-----|
+|**comment**|  It's a comment...  |
+|**create_home**| If you want to create users home directory or not  |
+|**action**| `creat` otr `remove`  |
+|**username**| Name of user  |
+|**shell**| Default shell, if empty `['user_management']['default_shell']` will apply  |
+|**password**| Password of user, it should be hashed.  |
+|**uid**| User ID if you want to set   |
+|**gid**| Group of user.  |
+|**sudoer**| If you want to set this user to sudoer, set `true`  |
+|**command**| List of sudo command.   |
+|**sudo_pwdless**| Set this user to sudo passwordless or not  |
+|**delete_home_when_remove**| If you want to delete user directory when remove this user, set `true`  |
+|**ssh_keys**| Paste sshe key, if this user have one.|
 
 
-Example
+**Example**
 
 ```
 "users": [
