@@ -1,0 +1,16 @@
+# This file is managed by Chef.
+# Do NOT modify this file directly.
+
+# User privilege specification
+root          ALL=(ALL) ALL
+
+<% @sudoers_users.each do |user| -%>
+<%= user[:uname] %> ALL=(ALL) <%= "NOPASSWD:" if user[:sudo_pwdless] %><%= user[:command] %>
+<% end -%>
+
+<% @sudoers_groups.each do |group| -%>
+# Members of the group '<%= group %>' may gain root privileges
+%<%= group[:name] %> ALL=(ALL) <%= "NOPASSWD:" if group[:sudo_pwdless] %><%= group[:command] %>
+<% end -%>
+
+

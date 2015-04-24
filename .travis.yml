@@ -1,0 +1,9 @@
+language: ruby
+gemfile:
+   - test/support/Gemfile
+rvm:
+  - 1.9.3
+  - 2.1.0
+script: 
+  - bundle exec rake rspec
+  - bundle exec rake foodcritic
