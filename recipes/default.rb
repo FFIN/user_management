@@ -43,7 +43,7 @@ if node['user_management']['use_databag'] == true then
 				action :create
 			end
 		end
-		if(user['sudoer'])
+		if user['sudoer']
 			command = user['command'] ? user['command'] : 'ALL'
 			hash = { :uname => user['id'], :command => command, :sudo_pwdless => user['sudo_pwdless'] }
 			sudoer_users.push(hash)
@@ -67,7 +67,7 @@ else
 				action :create
 			end
 		end
-		if(user['sudoer'])
+		if user['sudoer']
 			command = user['command'] ? user['command'] : 'ALL'
 			hash = { :uname => user['username'], :command => command, :sudo_pwdless => user['sudo_pwdless'] }
 			sudoer_users.push(hash)
@@ -75,16 +75,14 @@ else
 	end
 end
 
-if sudoer_users 
-	template "/etc/sudoers" do
-		source 'sudoers.erb'
-		mode   '0440'
-		owner  'root'
-		group  node['root_group']
-		variables(
-			:sudoers_users     => sudoer_users,
-			:sudoers_groups     => node['user_management']['sudoer_group']
-		)
-	end
-
+template "/etc/sudoers" do
+	source 'sudoers.erb'
+	mode   '0440'
+	owner  'root'
+	group  node['root_group']
+	variables(
+		:sudoers_users     => sudoer_users,
+		:sudoers_groups     => node['user_management']['sudoer_group']
+	)
+	only_if { sudoer_users }
 end

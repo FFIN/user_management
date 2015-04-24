@@ -5,7 +5,7 @@ task :rspec do |t|
   if Gem::Version.new( '1.9.2' ) <= Gem::Version.new( RUBY_VERSION.dup )
     require 'rspec/core/rake_task'
     RSpec::Core::RakeTask.new( :rspec ) do |t|
-      spec_files_path = './spec/*_spec.rb'
+      spec_files_path = './spec/recipe/*_spec.rb'
       t.pattern = spec_files_path
       t.rspec_opts = ['-c']
     end

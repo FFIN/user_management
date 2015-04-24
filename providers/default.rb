@@ -64,6 +64,7 @@ action :create do
       end
     end
   end
+  new_resource.updated_by_last_action(true)
 end
 
 
@@ -84,7 +85,7 @@ action :remove do
   end
 
   grp.run_action :remove
-
+  new_resource.updated_by_last_action(true)
 end
 
 def ssh_keys
